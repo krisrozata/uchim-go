@@ -2,19 +2,6 @@ package main
 
 import "fmt"
 
-func proveriChislo(n int) (string, error) {
-    if n == 0 {
-        return "", fmt.Errorf("нулата не е нито четна, нито нечетна")
-    }
-    if n%2 == 0 {
-        return "четно", nil
-    }
-    if n%2 == 1 {
-        return "нечетно", nil
-    }
-    return "", fmt.Errorf("числото %d е отрицателно", n)
-}
-
 func main() {
     var n int
     fmt.Print("Въведи число: ")
@@ -24,10 +11,20 @@ func main() {
         return
     }
 
-    rez, err := proveriChislo(n)
-    if err != nil {
-        fmt.Println("Грешка:", err)
+    if n <= 0 {
+        fmt.Println("Грешка: числото трябва да е положително")
         return
     }
-    fmt.Println(n, "е", rez)
+
+    for i := 1; i <= n; i++ {
+        if i%3 == 0 && i%5 == 0 {
+            fmt.Println("FizzBuzz")
+        } else if i%3 == 0 {
+            fmt.Println("Fizz")
+        } else if i%5 == 0 {
+            fmt.Println("Buzz")
+        } else {
+            fmt.Println(i)
+        }
+    }
 }
